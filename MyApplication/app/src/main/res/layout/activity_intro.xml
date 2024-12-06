@@ -68,28 +68,6 @@
 
 
 
-        <TextView
-            android:id="@+id/intro_button_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="18sp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginEnd="20dp"
-            android:textColor="@color/white"/>
 
-        <TextView
-            android:id="@+id/intro_button_signup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Signup"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:textSize="18sp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginStart="20dp"
-            android:textColor="@color/white"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

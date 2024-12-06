@@ -1,11 +1,14 @@
 package com.ou.myapplication.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.ou.myapplication.Common.Common;
 import com.ou.myapplication.Fragment.AccountFragment;
 import com.ou.myapplication.Fragment.MenuFragment;
 import com.ou.myapplication.Fragment.OrderFragment;
@@ -30,7 +33,17 @@ public class MainActivity extends AppCompatActivity {
 
         binding.buttonOrder.setOnClickListener(v -> replaceFragment(new OrderFragment()));
 
-        binding.buttonAccount.setOnClickListener(v -> replaceFragment(new AccountFragment()));
+        binding.buttonAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Common.currentUser!=null){
+                    replaceFragment(new AccountFragment());
+                }
+                else{
+                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                }
+            }
+        });
     }
 
     private void replaceFragment(Fragment fragment){
