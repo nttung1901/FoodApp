@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "448709637964",
+    "firebase_url": "https://oufood-19fee-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "oufood-19fee",
+    "storage_bucket": "oufood-19fee.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448709637964:android:51c5c79a391b7bcd5841e9",
+        "android_client_info": {
+          "package_name": "com.ou.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6PCY1geNW3tRDJHMgp0NZIF_gFWftDz4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448709637964:android:317036e4a809e9e25841e9",
+        "android_client_info": {
+          "package_name": "com.ou.oufood"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6PCY1geNW3tRDJHMgp0NZIF_gFWftDz4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
