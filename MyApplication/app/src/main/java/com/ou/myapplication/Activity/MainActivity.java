@@ -15,7 +15,7 @@ import com.ou.myapplication.Fragment.OrderFragment;
 import com.ou.myapplication.R;
 import com.ou.myapplication.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private ActivityMainBinding binding;
 
     @Override
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         replaceFragment(new MenuFragment());
         getVariable();
+        getWindow().setStatusBarColor(getResources().getColor(R.color.white));
     }
 
     private void getVariable(){

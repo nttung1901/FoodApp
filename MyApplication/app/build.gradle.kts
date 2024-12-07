@@ -48,4 +48,6 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation("com.readystatesoftware.sqliteasset:sqliteassethelper:+")
+    implementation("com.amulyakhare:com.amulyakhare.textdrawable:1.0.1")
 }

@@ -30,6 +30,7 @@ import com.ou.myapplication.Activity.ListFoodActivity;
 import com.ou.myapplication.Activity.LoginActivity;
 import com.ou.myapplication.Adapter.BestFoodsAdapter;
 import com.ou.myapplication.Adapter.CategoryAdapter;
+import com.ou.myapplication.Adapter.FoodListAdapter;
 import com.ou.myapplication.Common.Common;
 import com.ou.myapplication.Model.Category;
 import com.ou.myapplication.Model.Food;
@@ -53,6 +54,7 @@ public class MenuFragment extends Fragment {
     private TextView mTextViewSearch;
     private ImageView mButtonCart;
     private TextView mButtonViewAllBestFood;
+    private RecyclerView mViewFood;
 
 //
 //    // TODO: Rename parameter arguments, choose names that match
@@ -167,6 +169,11 @@ public class MenuFragment extends Fragment {
         mViewBestFood = view.findViewById(R.id.view_bestFood);
         innitBestFood();
 
+
+        //Food
+        mViewFood = view.findViewById(R.id.view_food);
+        innitFood();
+
         return view;
     }
 
@@ -224,5 +231,30 @@ public class MenuFragment extends Fragment {
             }
         });
 
+    }
+
+    private void innitFood(){
+        DatabaseReference myRefFood = database.getReference("Food");
+        ArrayList<Food> listFood = new ArrayList<>();
+        myRefFood.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for(DataSnapshot issue: snapshot.getChildren()){
+                        listFood.add(issue.getValue(Food.class));
+                    }
+                    if(listFood.size()>0){
+                        mViewFood.setLayoutManager(new GridLayoutManager(requireActivity(),2));
+                        RecyclerView.Adapter adapter = new FoodListAdapter(listFood);
+                        mViewFood.setAdapter(adapter);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
