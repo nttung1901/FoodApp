@@ -2,17 +2,9 @@ package com.ou.myapplication.Activity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,9 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ou.myapplication.Adapter.FoodListAdapter;
-import com.ou.myapplication.Model.Category;
 import com.ou.myapplication.Model.Food;
-import com.ou.myapplication.R;
 import com.ou.myapplication.databinding.ActivityListFoodBinding;
 
 import java.util.ArrayList;
@@ -49,7 +39,7 @@ public class ListFoodActivity extends BaseActivity {
     }
 
     private void initList(){
-        DatabaseReference myRef = database.getReference("Foods");
+        DatabaseReference myRef = database.getReference("Food");
         binding.progressBarListFood.setVisibility(View.VISIBLE);
         ArrayList<Food> list = new ArrayList<>();
 

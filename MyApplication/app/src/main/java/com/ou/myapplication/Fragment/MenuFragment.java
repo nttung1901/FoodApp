@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,6 @@ import com.ou.myapplication.Common.Common;
 import com.ou.myapplication.Model.Category;
 import com.ou.myapplication.Model.Food;
 import com.ou.myapplication.R;
-import com.ou.myapplication.databinding.FragmentMenuBinding;
 
 import java.util.ArrayList;
 
@@ -138,7 +138,7 @@ public class MenuFragment extends Fragment {
         mProgressBarBestFood = view.findViewById(R.id.progressBar_bestFood);
         mProgressBarBestFood.setVisibility(View.VISIBLE);
         ArrayList<Food> listBestFood = new ArrayList<>();
-        Query query=myRefBestFood.orderByChild("BestFood").equalTo(true);
+        Query query = myRefBestFood.orderByChild("BestFood").equalTo(true);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -147,7 +147,7 @@ public class MenuFragment extends Fragment {
                         listBestFood.add(issue.getValue(Food.class));
                     }
                     if(listBestFood.size()>0){
-                        mViewBestFood = view.findViewById(R.id.bestFoodView);
+                        mViewBestFood = view.findViewById(R.id.view_bestFood);
                         mViewBestFood.setLayoutManager(new LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false));
                         RecyclerView.Adapter adapter = new BestFoodsAdapter(listBestFood);
                         mViewBestFood.setAdapter(adapter);

@@ -1,19 +1,11 @@
 package com.ou.myapplication.Activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
 import com.ou.myapplication.Model.Food;
 //import com.ou.myapplication.Helper.ManagmentCart;
-import com.ou.myapplication.R;
 import com.ou.myapplication.databinding.ActivityDetailFoodBinding;
 
 public class DetailFoodActivity extends BaseActivity {
