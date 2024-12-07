@@ -13,8 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.ou.myapplication.Activity.CartActivity;
+import com.ou.myapplication.Activity.ListFoodActivity;
 import com.ou.myapplication.Activity.LoginActivity;
 import com.ou.myapplication.Adapter.BestFoodsAdapter;
 import com.ou.myapplication.Adapter.CategoryAdapter;
@@ -45,6 +49,10 @@ public class MenuFragment extends Fragment {
     private RecyclerView mViewCategory;
     private ProgressBar mProgressBarBestFood;
     private RecyclerView mViewBestFood;
+    private ImageView mButtonSearch;
+    private TextView mTextViewSearch;
+    private ImageView mButtonCart;
+    private TextView mButtonViewAllBestFood;
 
 //
 //    // TODO: Rename parameter arguments, choose names that match
@@ -92,7 +100,11 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
+
+
         database = FirebaseDatabase.getInstance("https://oufood-19fee-default-rtdb.asia-southeast1.firebasedatabase.app/");
+
+
         //Button Logout
         mImageViewLogout = view.findViewById(R.id.button_logout);
         mImageViewLogout.setOnClickListener(new View.OnClickListener() {
@@ -104,9 +116,62 @@ public class MenuFragment extends Fragment {
             }
         });
 
+
+        //Button Search
+        mTextViewSearch = view.findViewById(R.id.textView_search);
+        mButtonSearch = view.findViewById(R.id.button_search);
+        mButtonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = mTextViewSearch.getText().toString();
+                if(!text.isEmpty()) {
+                    Intent intent = new Intent(requireActivity(), ListFoodActivity.class);
+                    intent.putExtra("text", text);
+                    intent.putExtra("isSearch", true);
+                    startActivity(intent);
+                }
+            }
+        });
+
+
+        //Button Cart
+        mButtonCart = view.findViewById(R.id.button_cart);
+        mButtonCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(requireActivity(), CartActivity.class));
+            }
+        });
+
+
+        //Button view all best food
+        mButtonViewAllBestFood= view.findViewById(R.id.button_viewAllBestFood);
+        mButtonViewAllBestFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireActivity(),ListFoodActivity.class);
+                intent.putExtra("allBestFood", true);
+                startActivity(intent);
+            }
+        });
+
+
         //Category
-        DatabaseReference myRefCategory = database.getReference("Category");
         mProgressBarCategory = view.findViewById(R.id.progressBar_category);
+        mViewCategory = view.findViewById(R.id.view_category);
+        innitCategory();
+
+
+        //BestFood
+        mProgressBarBestFood = view.findViewById(R.id.progressBar_bestFood);
+        mViewBestFood = view.findViewById(R.id.view_bestFood);
+        innitBestFood();
+
+        return view;
+    }
+
+    private void innitCategory(){
+        DatabaseReference myRefCategory = database.getReference("Category");
         mProgressBarCategory.setVisibility(View.VISIBLE);
         ArrayList<Category> listCategory = new ArrayList<>();
         myRefCategory.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -117,7 +182,6 @@ public class MenuFragment extends Fragment {
                         listCategory.add(issue.getValue(Category.class));
                     }
                     if(listCategory.size()>0){
-                        mViewCategory = view.findViewById(R.id.view_category);
                         mViewCategory.setLayoutManager(new GridLayoutManager(requireActivity(),4));
                         RecyclerView.Adapter adapter = new CategoryAdapter(listCategory);
                         mViewCategory.setAdapter(adapter);
@@ -131,11 +195,10 @@ public class MenuFragment extends Fragment {
 
             }
         });
+    }
 
-
-        //BestFood
+    private void innitBestFood(){
         DatabaseReference myRefBestFood = database.getReference("Food");
-        mProgressBarBestFood = view.findViewById(R.id.progressBar_bestFood);
         mProgressBarBestFood.setVisibility(View.VISIBLE);
         ArrayList<Food> listBestFood = new ArrayList<>();
         Query query = myRefBestFood.orderByChild("BestFood").equalTo(true);
@@ -147,7 +210,6 @@ public class MenuFragment extends Fragment {
                         listBestFood.add(issue.getValue(Food.class));
                     }
                     if(listBestFood.size()>0){
-                        mViewBestFood = view.findViewById(R.id.view_bestFood);
                         mViewBestFood.setLayoutManager(new LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false));
                         RecyclerView.Adapter adapter = new BestFoodsAdapter(listBestFood);
                         mViewBestFood.setAdapter(adapter);
@@ -162,6 +224,5 @@ public class MenuFragment extends Fragment {
             }
         });
 
-        return view;
     }
 }

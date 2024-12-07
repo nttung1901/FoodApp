@@ -98,7 +98,7 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/buton_cart"
+                android:id="@+id/button_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@drawable/grey_background"

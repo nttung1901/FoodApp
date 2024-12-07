@@ -34,7 +34,7 @@
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/button_menu"
+                android:id="@+id/nav_menu"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:padding="1dp"
@@ -58,7 +58,7 @@
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/button_order"
+                android:id="@+id/nav_order"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:padding="1dp"
@@ -82,12 +82,12 @@
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/button_account"
-                android:layout_width="50dp"
+                android:id="@+id/nav_account"
+                android:layout_width="51dp"
                 android:layout_height="50dp"
                 android:padding="1dp"
                 android:src="@drawable/account"
-                app:tint="@color/red"/>
+                app:tint="@color/red" />
 
             <TextView
                 android:layout_width="wrap_content"

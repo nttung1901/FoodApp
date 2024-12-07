@@ -29,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getVariable(){
-        binding.buttonMenu.setOnClickListener(v -> replaceFragment(new MenuFragment()));
+        binding.navMenu.setOnClickListener(v -> replaceFragment(new MenuFragment()));
 
-        binding.buttonOrder.setOnClickListener(v -> replaceFragment(new OrderFragment()));
+        binding.navOrder.setOnClickListener(v -> replaceFragment(new OrderFragment()));
 
-        binding.buttonAccount.setOnClickListener(new View.OnClickListener() {
+        binding.navAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(Common.currentUser!=null){
