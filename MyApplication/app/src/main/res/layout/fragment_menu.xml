@@ -91,7 +91,8 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
-                    app:srcCompat="@drawable/search_icon" />
+                    app:srcCompat="@drawable/search_icon"
+                    app:tint="@color/red"/>
             </LinearLayout>
 
             <ImageView
@@ -100,7 +101,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/grey_background"
                 android:padding="8dp"
-                app:srcCompat="@drawable/basket" />
+                app:srcCompat="@drawable/basket"
+                app:tint="@color/red"/>
         </LinearLayout>
 
         <LinearLayout

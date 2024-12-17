@@ -1,29 +1,33 @@
 package com.ou.myapplication.Model;
 
+import android.provider.ContactsContract;
+
 public class Order {
-    private String ProductId;
+    private int ProductId;
     private String ProductName;
-    private String Quantity;
-    private String Price;
-    private String Discount;
+    private int Quantity;
+    private double Price;
+    private int Discount;
+    private String ImagePath;
 
     public Order(){
 
     }
 
-    public Order(String productId, String productName, String quantity, String price, String discount) {
+    public Order(int productId, String productName, int quantity, double price, int discount, String imagePath) {
         ProductId = productId;
         ProductName = productName;
         Quantity = quantity;
         Price = price;
         Discount = discount;
+        ImagePath = imagePath;
     }
 
-    public String getProductId() {
+    public int getProductId() {
         return ProductId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(int productId) {
         ProductId = productId;
     }
 
@@ -35,27 +39,35 @@ public class Order {
         ProductName = productName;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return Quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         Quantity = quantity;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return Price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         Price = price;
     }
 
-    public String getDiscount() {
+    public int getDiscount() {
         return Discount;
     }
 
-    public void setDiscount(String discount) {
+    public void setDiscount(int discount) {
         Discount = discount;
+    }
+
+    public String getImagePath() {
+        return ImagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        ImagePath = imagePath;
     }
 }

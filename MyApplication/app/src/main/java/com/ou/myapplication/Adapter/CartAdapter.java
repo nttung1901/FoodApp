@@ -17,12 +17,15 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.ou.myapplication.Model.Food;
 //import com.ou.myapplication.ChangeNumberItemsListener;
 //import com.ou.myapplication.Helper.ManagmentCart;
+import com.ou.myapplication.Model.Order;
 import com.ou.myapplication.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewholder> {
-    ArrayList<Food> list;
+    ArrayList<Order> items;
+    Context context;
 //    private ManagmentCart managmentCart;
 //    ChangeNumberItemsListener changeNumberItemsListener;
 
@@ -32,29 +35,36 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewholder> {
 //        this.changeNumberItemsListener = changeNumberItemsListener;
 //    }
 
+    public CartAdapter(ArrayList<Order> items){
+        this.items = items;
+    }
+
     @NonNull
     @Override
     public CartAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_cart,parent,false);
+        context = parent.getContext();
+        View inflate = LayoutInflater.from(context).inflate(R.layout.list_item_cart,parent,false);
         return new viewholder(inflate);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CartAdapter.viewholder holder, int position) {
-        holder.textViewTitle.setText(list.get(position).getTitle());
-        holder.textViewFeeEachItem.setText("$"+list.get(position).getPrice());
-        holder.textViewTotalEachItem.setText("$"+list.get(position).getNumberInCart()*list.get(position).getPrice());
-        holder.textViewNum.setText(list.get(position).getNumberInCart()+"");
+        holder.textViewTitle.setText(items.get(position).getProductName());
+        holder.textViewFeeEachItem.setText("$"+items.get(position).getPrice());
+        holder.textViewTotalEachItem.setText("$"+items.get(position).getQuantity()*items.get(position).getPrice());
+        holder.textViewNum.setText(items.get(position).getQuantity()+"");
 
         Glide.with(holder.itemView.getContext())
-                .load(list.get(position).getImagePath())
+                .load(items.get(position).getImagePath())
                 .transform(new CenterCrop(), new RoundedCorners(30))
                 .into(holder.mPicFoodCart);
 
-//        holder.buttonPlus.setOnClickListener(v -> managmentCart.plusNumberItem(list, position, () -> {
-//            notifyDataSetChanged();
-//            changeNumberItemsListener.change();
-//        }));
+//        holder.buttonPlus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                notifyDataSetChanged();
+//            }
+//        });
 //
 //        holder.buttonMinus.setOnClickListener(v -> {
 //            managmentCart.minusNumberItem(list, position, () -> {
@@ -66,7 +76,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewholder> {
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return items.size();
     }
 
     public class viewholder extends RecyclerView.ViewHolder{

@@ -24,7 +24,8 @@
             android:padding="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/arrow" />
+            app:srcCompat="@drawable/arrow"
+            app:tint="@color/red"/>
 
         <TextView
             android:id="@+id/textView_titleListFood"

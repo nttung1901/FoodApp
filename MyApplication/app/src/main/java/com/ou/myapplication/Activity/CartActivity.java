@@ -16,14 +16,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ou.myapplication.Adapter.CartAdapter;
 //import com.ou.myapplication.Helper.ChangeNumberItemsListener;
 //import com.ou.myapplication.Helper.ManagmentCart;
+import com.ou.myapplication.Database.Database;
+import com.ou.myapplication.Model.Order;
 import com.ou.myapplication.R;
 import com.ou.myapplication.databinding.ActivityCartBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartActivity extends BaseActivity {
     private ActivityCartBinding binding;
     private RecyclerView.Adapter adapter;
     //private ManagmentCart managmentCart;
     private double tax;
+    private Database databaseSqlite;
+    List<Order> cart = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,31 +39,35 @@ public class CartActivity extends BaseActivity {
         setContentView(binding.getRoot());
 
         //managmentCart = new ManagmentCart(this);
+        databaseSqlite = new Database(this);
 
         setVariable();
         //calculateCart();
-        //initList();
+        initList();
     }
 
-//    private void initList(){
-//        if(managmentCart.getListCart().isEmpty()){
-//            binding.textViewEmpty.setVisibility(View.VISIBLE);
-//            binding.scrollViewCart.setVisibility(View.GONE);
-//        }else{
-//            binding.textViewEmpty.setVisibility(View.GONE);
-//            binding.scrollViewCart.setVisibility(View.VISIBLE);
-//        }
-//
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-//        binding.cartView.setLayoutManager(linearLayoutManager);
-//        adapter= new CartAdapter(managmentCart.getListCart(), this, new ChangeNumberItemsListener() {
+    private void initList(){
+
+        cart = databaseSqlite.getCarts();
+        if(cart.isEmpty()){
+            binding.textViewEmpty.setVisibility(View.VISIBLE);
+            binding.scrollViewCart.setVisibility(View.GONE);
+        }else{
+            binding.textViewEmpty.setVisibility(View.GONE);
+            binding.scrollViewCart.setVisibility(View.VISIBLE);
+        }
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        binding.cartView.setLayoutManager(linearLayoutManager);
+        adapter= new CartAdapter(databaseSqlite.getCarts()) ;
+//        {
 //            @Override
 //            public void change() {
 //                calculateCart();
 //            }
-//        });
-//        binding.cartView.setAdapter(adapter);
-//    }
+//        };
+        binding.cartView.setAdapter(adapter);
+    }
 
 //    private void calculateCart(){
 //        double percentTax = 0.02;
